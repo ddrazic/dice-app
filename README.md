@@ -27,3 +27,4 @@ dice-app/
 
 ## Pokretanje aplikacije
 `npx expo start`
+
