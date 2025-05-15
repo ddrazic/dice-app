@@ -18,13 +18,19 @@ dice-app/
 ```
 
 ## Pokretanje aplikacije lokalno
-`git clone https://github.com/ddrazic/dice-app`
-`cd Dice`
+```
+git clone https://github.com/ddrazic/dice-app
+cd Dice
+```
 
 
 ## Instalacija paketa
-`npm install`
+```
+npm install
+```
 
 ## Pokretanje aplikacije
-`npx expo start`
+```
+npx expo start
+```
 
