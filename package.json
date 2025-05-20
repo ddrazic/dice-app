@@ -9,18 +9,18 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@react-native-masked-view/masked-view": "^0.3.2",
-    "@react-navigation/native": "^6.1.18",
-    "@react-navigation/stack": "^6.4.1",
-    "expo": "^53.0.0",
-    "expo-av": "~15.1.4",
-    "expo-status-bar": "~2.2.3",
-    "react": "^19.0.0",
-    "react-native": "0.79.2",
+    "@react-native-masked-view/masked-view": "latest",
+    "@react-navigation/native": "latest",
+    "@react-navigation/stack": "latest",
+    "expo": "53.0.9",
+    "expo-av": "latest",
+    "expo-status-bar": "latest",
+    "react": "19.0.0",
+    "react-native": "latest",
     "react-native-gesture-handler": "~2.24.0",
     "react-native-reanimated": "latest",
-    "react-native-safe-area-context": "^5.4.0",
-    "react-native-screens": "~4.10.0"
+    "react-native-safe-area-context": "latest",
+    "react-native-screens": "latest"
   },
   "devDependencies": {
     "@babel/core": "^7.27.1",
