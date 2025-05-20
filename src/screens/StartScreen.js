@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, StyleSheet, View, TouchableOpacity, Image } from "react-native";
+import { Text, StyleSheet, View, TouchableOpacity, Image, Platform } from "react-native";
 import { showPlatformMessage } from '../components/NativeInfo';
 
 const StartScreen = ({ navigation }) => {
@@ -42,16 +42,20 @@ const StartScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'center',
     },
     title: {
-        color: 'white',
+        color: 'black',
         fontSize: 24,
         marginBottom: 40,
         textAlign: 'center',
-        fontFamily: 'monospace'
+        fontFamily: Platform.select({
+            ios: 'Courier',
+            android: 'monospace',
+            default: 'monospace',
+        }),
     },
     dice: {
         flexDirection: 'row',
@@ -64,6 +68,12 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 12,
         marginHorizontal: 20,
+        backgroundColor: 'white',
+        elevation: 5, // za Android sjenu
+        shadowColor: 'black', // za iOS sjenu
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
     },
     diceImage: {
         width: 130,

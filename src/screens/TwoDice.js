@@ -1,12 +1,5 @@
 import React, { useState, useRef } from 'react';
-import {
-    View,
-    Image,
-    StyleSheet,
-    TouchableWithoutFeedback,
-    Animated,
-    Text,
-} from 'react-native';
+import { View, Image, StyleSheet, TouchableWithoutFeedback, Animated, Text, Platform } from 'react-native';
 
 const diceImages = [
     require('../../assets/dice1.png'),
@@ -95,7 +88,7 @@ const TwoDice = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -111,7 +104,11 @@ const styles = StyleSheet.create({
     sumText: {
         color: 'grey',
         fontSize: 24,
-        fontFamily: 'monospace'
+        fontFamily: Platform.select({
+            ios: 'Courier',
+            android: 'monospace',
+            default: 'monospace',
+        }),
     },
 });
 
