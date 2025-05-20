@@ -20,7 +20,7 @@ dice-app/
 ## Pokretanje aplikacije lokalno
 ```
 git clone https://github.com/ddrazic/dice-app
-cd Dice
+cd dice-app
 ```
 
 
