@@ -57,6 +57,6 @@ xcode-select --install
 ```
 3. Stvorite novi virtualni uređaj (Simulator):
 File > New Simulator....
-Odaberite Device Type (npr., "iPhone 15 Pro Max")
-Simulator će se automatski pokrenuti nakon što ga stvorite, ili ga možete pokrenuti iz Xcode > Open Developer Tool > Simulators i odabirom vašeg simulatora.
+Odaberite Device Type (npr., "iPhone 15 Pro Max").
+Simulator će se automatski pokrenuti nakon što ga stvorite ili ga možete pokrenuti iz Xcode > Open Developer Tool > Simulators i odabirom vašeg simulatora.
 4. Nakon pokrenutog Metro Bundlera (npx expo start) pritisnite tipku i na tipkovnici. Aplikacija će se pokrenuti na simulatoru.
