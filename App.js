@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native'; // Nova import
+import { createStackNavigator } from '@react-navigation/stack'; // Nova import
+import StartScreen from './src/screens/StartScreen';
+import OneDice from './src/screens/OneDice';
+import TwoDice from './src/screens/TwoDice';
+
+const Stack = createStackNavigator(); // Stvaranje stack navigatora
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Dice">
+        <Stack.Screen name="Dice" component={StartScreen} />
+        <Stack.Screen name="One" component={OneDice} />
+        <Stack.Screen name="Two" component={TwoDice} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
