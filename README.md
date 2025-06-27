@@ -3,23 +3,23 @@
 ```
 dice-app/
 ├── .expo/
-├── .idea/
 ├── assets/
 ├── node_modules/
 ├── src/
-├── .DS_Store
 ├── .gitignore
+├── .npmrc
 ├── App.js
 ├── app.json
-├── babel.config.js
-├── package-lock.json
+├── eas.json
+├── index.js
 ├── package.json
-└── struktura.txt
+├── package-lock.json
+└── README.md
 ```
 
 ## Pokretanje aplikacije lokalno
 ```
-git clone https://github.com/ddrazic/dice-app
+git clone https://github.com/ddrazic/dice-app.git
 cd dice-app
 ```
 
@@ -34,3 +34,9 @@ npm install
 npx expo start
 ```
 
+## Otvaranje aplikacije na Android ili iOS uređaju
+
+Instalirati aplikaciju Expo Go.
+Računalo i mobitel trebaju biti spojeni na istu Wi-Fi mrežu.
+Skenirani QR kod nakon pokrenutog Metro Bundlera (npx expo start).
+Ukoliko se aplikacija i dalje ne otvara, potrebno je ugasiti Windows Defender Firewall u Control Panelu i pokušati ponovno.
