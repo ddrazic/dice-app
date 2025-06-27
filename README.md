@@ -38,5 +38,5 @@ npx expo start
 
 Instalirati aplikaciju Expo Go.
 Računalo i mobitel trebaju biti spojeni na istu Wi-Fi mrežu.
-Skenirani QR kod nakon pokrenutog Metro Bundlera (npx expo start).
+Skenirati QR kod nakon pokrenutog Metro Bundlera (npx expo start).
 Ukoliko se aplikacija i dalje ne otvara, potrebno je ugasiti Windows Defender Firewall u Control Panelu i pokušati ponovno.
