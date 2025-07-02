@@ -5,49 +5,53 @@ import { showPlatformMessage } from '../components/NativeInfo';
 
 const StartScreen = ({ navigation }) => {
 
-    const authenticateBiometricsAndroid = async () => {
+    const authenticateBiometrics = async () => {
         const hasHardware = await LocalAuthentication.hasHardwareAsync();
         const isEnrolled = await LocalAuthentication.isEnrolledAsync();
 
         if (!hasHardware) {
-            Alert.alert('Greška', 'Vaš uređaj ne podržava otisak prsta.');
+            Alert.alert('Greška', 'Vaš uređaj ne podržava biometrijsku autentifikaciju.');
             return;
         }
 
         if (!isEnrolled) {
-            Alert.alert('Greška', 'Nijedan otisak prsta nije postavljen na uređaju.');
+            Alert.alert('Greška', 'Nijedan biometrijski podatak (otisak prsta/Face ID) nije postavljen na uređaju.');
             return;
         }
 
+        let promptMessage = '';
+        if (Platform.OS === 'ios') {
+            promptMessage = 'Koristite Face ID ili Touch ID za nastavak na dvije kockice.';
+        } else if (Platform.OS === 'android') {
+            promptMessage = 'Koristite otisak prsta za nastavak na dvije kockice.';
+        } else {
+            promptMessage = 'Potvrdite svoj identitet za nastavak.';
+        }
+
         const result = await LocalAuthentication.authenticateAsync({
-            promptMessage: 'Koristite otisak prsta za nastavak na dvije kockice.',
+            promptMessage: promptMessage,
             disableDeviceFallback: true,
             cancelLabel: 'Odustani',
         });
 
         if (result.success) {
-            Alert.alert('Uspjeh!', 'Autentifikacija otiskom prsta uspješna.');
+            Alert.alert('Uspjeh!', 'Biometrijska autentifikacija uspješna. Preusmjeravanje na dvije kockice.');
             navigation.navigate('Two');
         } else if (result.error === 'user_fallback') {
-            Alert.alert('Odustali ste', 'Odustali ste od autentifikacije otiskom prsta.');
+            Alert.alert('Odustali ste', 'Odustali ste od biometrijske autentifikacije.');
         } else if (result.error === 'system_cancel') {
             Alert.alert('Prekinuto', 'Sustav je prekinuo autentifikaciju.');
         } else if (result.error === 'lockout') {
-            Alert.alert('Zaključano', 'Previše neuspješnih pokušaja. Otisak prsta je privremeno zaključan.');
+             Alert.alert('Zaključano', 'Previše neuspješnih pokušaja. Biometrija je privremeno zaključana.');
         }
         else {
-            Alert.alert('Neuspjeh', 'Autentifikacija otiskom prsta neuspješna. Pokušajte ponovno.');
+            Alert.alert('Neuspjeh', 'Biometrijska autentifikacija neuspješna. Pokušajte ponovno.');
             console.log("Autentifikacija neuspješna: ", result.error);
         }
     };
 
     const handleTwoDicePress = () => {
-        if (Platform.OS === 'android') {
-            authenticateBiometricsAndroid();
-        } else {
-
-            navigation.navigate('Two');
-        }
+        authenticateBiometrics();
     };
 
     return (
@@ -65,6 +69,7 @@ const StartScreen = ({ navigation }) => {
                         </View>
                     </TouchableOpacity>
 
+
                     <TouchableOpacity onPress={handleTwoDicePress}>
                         <View style={styles.diceWrapper}>
                             <Image
@@ -75,7 +80,6 @@ const StartScreen = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
             </View>
-
 
             <View style={styles.bottomButton}>
                 <TouchableOpacity style={styles.nativeButton} onPress={showPlatformMessage}>
@@ -116,8 +120,8 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 12,
         backgroundColor: 'white',
-        elevation: 5,
-        shadowColor: 'black',
+        elevation: 5, 
+        shadowColor: 'black', 
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
         shadowRadius: 5,
@@ -152,7 +156,6 @@ const styles = StyleSheet.create({
         color: '#555',
         fontSize: 14,
         marginTop: 5,
-        marginBottom: 10,
         textAlign: 'center',
         marginHorizontal: 20,
     },

@@ -60,3 +60,15 @@ File > New Simulator....
 Odaberite Device Type (npr., "iPhone 15 Pro Max").
 Simulator će se automatski pokrenuti nakon što ga stvorite ili ga možete pokrenuti iz Xcode > Open Developer Tool > Simulators i odabirom vašeg simulatora. 
 4. Nakon pokrenutog Metro Bundlera (npx expo start) pritisnite tipku i na tipkovnici. Aplikacija će se pokrenuti na simulatoru.
+
+
+## iOS build
+```
+npx eas build --platform ios --profile development
+```
+Za instalaciju na fizički iOS uređaj: Potrebno je Mac računalo s Xcodeom. Povežite iPhone s Macom, otvorite Xcode, idite na Window > Devices and Simulators, pronađite svoj uređaj i povucite .ipa datoteku na njega.
+
+## Android build
+```
+npx eas build --platform android --profile development
+```
