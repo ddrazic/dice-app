@@ -26,12 +26,22 @@
       "package": "com.ddrazic.diceapp"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "webpack",
+      "output": "static"
     },
     "extra": {
       "eas": {
         "projectId": "a07dfb82-14cb-4fa5-bd77-b8f21179d725"
       }
-    }
+    },
+    "plugins": [
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Dopusti aplikaciji ${PRODUCT_NAME} da koristi Face ID za autentifikaciju."
+        }
+      ]
+    ]
   }
 }
