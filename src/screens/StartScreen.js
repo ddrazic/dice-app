@@ -1,58 +1,7 @@
 import React from "react";
 import { Text, StyleSheet, View, TouchableOpacity, Image, Platform, Alert } from "react-native";
-import * as LocalAuthentication from 'expo-local-authentication';
-import { showPlatformMessage } from '../components/NativeInfo';
 
 const StartScreen = ({ navigation }) => {
-
-    const authenticateBiometrics = async () => {
-        const hasHardware = await LocalAuthentication.hasHardwareAsync();
-        const isEnrolled = await LocalAuthentication.isEnrolledAsync();
-
-        if (!hasHardware) {
-            Alert.alert('Greška', 'Vaš uređaj ne podržava biometrijsku autentifikaciju.');
-            return;
-        }
-
-        if (!isEnrolled) {
-            Alert.alert('Greška', 'Nijedan biometrijski podatak (otisak prsta/Face ID) nije postavljen na uređaju.');
-            return;
-        }
-
-        let promptMessage = '';
-        if (Platform.OS === 'ios') {
-            promptMessage = 'Koristite Face ID ili Touch ID za nastavak na dvije kockice.';
-        } else if (Platform.OS === 'android') {
-            promptMessage = 'Koristite otisak prsta za nastavak na dvije kockice.';
-        } else {
-            promptMessage = 'Potvrdite svoj identitet za nastavak.';
-        }
-
-        const result = await LocalAuthentication.authenticateAsync({
-            promptMessage: promptMessage,
-            disableDeviceFallback: true,
-            cancelLabel: 'Odustani',
-        });
-
-        if (result.success) {
-            Alert.alert('Uspjeh!', 'Biometrijska autentifikacija uspješna. Preusmjeravanje na dvije kockice.');
-            navigation.navigate('Two');
-        } else if (result.error === 'user_fallback') {
-            Alert.alert('Odustali ste', 'Odustali ste od biometrijske autentifikacije.');
-        } else if (result.error === 'system_cancel') {
-            Alert.alert('Prekinuto', 'Sustav je prekinuo autentifikaciju.');
-        } else if (result.error === 'lockout') {
-             Alert.alert('Zaključano', 'Previše neuspješnih pokušaja. Biometrija je privremeno zaključana.');
-        }
-        else {
-            Alert.alert('Neuspjeh', 'Biometrijska autentifikacija neuspješna. Pokušajte ponovno.');
-            console.log("Autentifikacija neuspješna: ", result.error);
-        }
-    };
-
-    const handleTwoDicePress = () => {
-        authenticateBiometrics();
-    };
 
     return (
         <View style={styles.container}>
@@ -70,7 +19,7 @@ const StartScreen = ({ navigation }) => {
                     </TouchableOpacity>
 
 
-                    <TouchableOpacity onPress={handleTwoDicePress}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Two')}>
                         <View style={styles.diceWrapper}>
                             <Image
                                 style={styles.diceImage}
@@ -81,11 +30,6 @@ const StartScreen = ({ navigation }) => {
                 </View>
             </View>
 
-            <View style={styles.bottomButton}>
-                <TouchableOpacity style={styles.nativeButton} onPress={showPlatformMessage}>
-                    <Text style={styles.nativeButtonText}>Show Platform Message</Text>
-                </TouchableOpacity>
-            </View>
         </View>
     );
 };
